@@ -1,0 +1,9 @@
+This project contains a virtual classroom with a unique id where users can enter as 2 different roles:
+• Student
+• Teacher
+
+The virtual classroom is nothing but a set of two lists indicating who is present in the classroom -
+teacher list and student list. Each lists should be LIVE - it will keep changing as and when stu-
+dents/teachers join and leave the classroom. In addition to the dynamic lists, for the teacher side, the
+classroom should also have two buttons - start class and end class. Students will only be allowed to en-
+ter the class after it has started and before it has ended. Rest of the time, permission should be denied.
