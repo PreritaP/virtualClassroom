@@ -1,0 +1,28 @@
+{
+  "name": "liveclass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "export NODE_ENV=development && nodemon build/index.js -e js,hbs"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^5.3.0",
+    "hbs": "^4.1.1",
+    "moment": "^2.29.0",
+    "mysql": "^2.18.1",
+    "nconf": "^0.10.0",
+    "node-exceptions": "^4.0.1",
+    "nodemon": "^2.0.4",
+    "request": "^2.88.2",
+    "socket.io": "^2.3.0",
+    "underscore": "^1.11.0",
+    "winston": "^3.3.3"
+  }
+}

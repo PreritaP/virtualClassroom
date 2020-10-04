@@ -1,0 +1,27 @@
+1. 
+curl --location --request POST 'http://localhost:8095/addVisitor' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name" : "test2",
+    "role" : 0,
+    "class" : 111
+}'
+
+2.
+curl --location --request POST 'http://localhost:8095/classAction' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "isStart" : 0,
+    "classTeacher" : "test1",
+    "classTeacherId" : 4,
+    "classRoom" : 112
+}'
+
+3.
+curl --location --request GET 'http://localhost:8095/111'
+
+4.
+curl --location --request GET 'http://localhost:8095/leaveClass/3'
+
+5.
+curl --location --request GET 'http://localhost:8095/showClassHistory/class1'

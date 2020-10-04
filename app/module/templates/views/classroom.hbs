@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Virtual Classroom</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/virtual-class.js"></script>
+</head>
+<body>
+<div class="main-content">
+	{{>header}}
+	<div class="teacher-action" style="display: flex;float: right;">
+		<div id="startClass" style="margin-top: 10px">
+			<button type="button" class="btn btn-primary">Start Class</button>
+		</div>
+		<div id="endClass" style="margin-left: 5px;margin-top: 10px">
+			<button type="button" class="btn btn-primary" disabled>End Class</button>
+		</div>
+		<div id="leaveClass" style="margin-left: 5px;margin-top: 10px">
+			<button type="button" class="btn btn-primary">Leave Class</button>
+		</div>		
+	</div>
+	<div class="class-content">
+		<div class="student-list">
+			<h3>Student List</h3>
+			<div id="studentList"></div>
+		</div>
+		<div class="teacher-list">
+			<h3>Teacher List</h3>
+			<div id="teacherList"></div>
+		</div>
+		<div class="notification-list">
+			<h3>Notifications</h3>
+			<div id="notiList"></div>
+		</div>
+	</div>
+</div>
+<script id="message-template" type="text/html">
+	<li>\{{msg}}</li>
+</script>
+{{>footer}}
+</body>
+</html>

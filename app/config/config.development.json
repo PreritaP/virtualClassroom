@@ -1,0 +1,25 @@
+{
+   "database": {
+       "mysqlMaster": {
+           "host": "127.0.0.1",
+           "port": "3306",
+           "user": "root",
+           "password": "password",
+           "database": "liveClass",
+           "connectionLimit": 10
+       },
+       "mysqlReadSlave": {
+           "host": "127.0.0.1",
+           "port": "3306",
+           "user": "root",
+           "password": "password",
+           "database": "liveClass",
+           "connectionLimit": 10
+       }
+   },
+   "server": {
+        "index": {
+            "port": 8095
+        }
+    }
+}

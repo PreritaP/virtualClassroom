@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Virtual Classroom</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/logs.js"></script>
+</head>
+<body>
+<div class="main-content">
+	{{>header}}
+
+<h1>Logs</h1>
+<table id="list">
+  <tr>
+    <th>Teacher</th>
+    <th>Class Start</th>
+    <th>Student</th>
+    <th>Student Join</th>
+    <th>Student Leave</th>
+    <th>Class End</th>
+  </tr>
+</table>
+
+</div>
+{{>footer}}
+</body>
+</html>

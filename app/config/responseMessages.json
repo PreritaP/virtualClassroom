@@ -1,0 +1,10 @@
+{
+	"APP_MESSAGES" : {
+		"SUCCESS" 				: {"errorCode" : "0", "message" : "Success"},
+		"FAILURE"				: {"errorCode" : "401", "message" : "Failure"},
+		"ERROR_VALIDATION" 		: {"errorCode" : "101", "message" : "Validation Error"},
+		"ERROR_NO_DATA" 		: {"errorCode" : "204", "message" : "No Data Available"},
+		"SERVER_ERROR" 			: {"errorCode" : "500", "message" : "SERVER ERROR"},
+		"PRECONDITIONS_FAILED"	: {"errorCode" : "412", "message" : "Preconditions Failed"}
+	}
+}
