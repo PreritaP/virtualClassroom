@@ -17,11 +17,11 @@ setTimeout(function(){
 socket.on('login', (data) => {
 	if (data.status == true) {
 		if(data.role == 2) {
-			window.location = "http://localhost:8095/history?room="+data.room;
+			window.location = "http://15.207.222.108:8095/history?room="+data.room;
 		} else {
-			window.location = "http://localhost:8095/classRoom?id="+data.response.visitorId+"&name="+data.name+"&role="+data.role+"&room="+data.class;
+			window.location = "http://15.207.222.108:8095/classRoom?id="+data.response.visitorId+"&name="+data.name+"&role="+data.role+"&room="+data.class;
 		}
 	} else {
-		document.querySelector('.main-content').innerHTML = 'ACCESS DENIED';
+		document.querySelector('.main-content').innerHTML = data.response.message;
 	}
 })

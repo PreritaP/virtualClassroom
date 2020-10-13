@@ -47,20 +47,37 @@ class classModel extends BaseModel {
         var _this = this;
         if (data.role == 0) {
             var results = {};
+            results.access = false;
             let visitorParams = {
                 "visitorName"  : data.name,
                 "visitorRole"  : data.role,
                 "visitorClass" : data.class
             }
-            _this.insertVisitor(visitorParams, function(error, res){
+            this.mysqlSelect('visitor', {'visitorStatus' : 1, 'visitorRole' : 0}, {'fields' : 'visitorName'}, function(error, res){
                 if (error) {
+                    console.log(error);
                     return callback(error); 
                 }
                 else {
-                    results.id = res.insertId;
-                    return callback(null, results);
+                    console.log(underscore.isEmpty(res));
+                    if(underscore.isEmpty(res) == true){
+                        _this.insertVisitor(visitorParams, function(error, res){
+                            if (error) {
+                                return callback(error);
+                            }
+                            else {
+                                results.access = true;
+                                results.id = res.insertId;
+                                return callback(null, results);
+                            }
+                        });
+                    } else {
+                        results.message = "A teacher is already there in the class. Please login as student.";
+                        return callback(null, results);
+                    }
                 }
             });
+
         } else if (data.role == 1) {
             _this.isClassStarted(data.class, function(error, isEligible) {
                 let date_ob = new Date();
@@ -84,10 +101,12 @@ class classModel extends BaseModel {
                             });
                         }
                     } else {
-                        return callback(null, results);
+                        results.message = "You can not enter the class, since the class has not started yet."
+                        return callback(results, results);
                     }
                 } else {
-                    return callback(null, results);
+                    results.message = "Access Denied";
+                    return callback(results, results);
                 }
                 
             });
@@ -123,6 +142,7 @@ class classModel extends BaseModel {
             }
             _this.startClass(classParams, function(error, results){
                 if (error) {
+                    console.log(error);
                     return callback(error); 
                 }else {
                     console.log(results);
@@ -131,7 +151,13 @@ class classModel extends BaseModel {
             });
         } else if (data.isStart == 0) {
             let date_ob = new Date();
-            return _this.mysqlUpdate('class', {'classEndTime' : date_ob}, {'classRoom' : data.classRoom}, callback);
+            this.mysqlUpdate('visitor', {'visitorStatus' : 0},{'visitorClass' : data.classRoom},function (error, res){
+                if (error) {
+                    return callback(error); 
+                }else {
+                    return _this.mysqlUpdate('class', {'classEndTime' : date_ob}, {'classRoom' : data.classRoom}, callback);
+                }
+            })
         }
     }
 

@@ -9,7 +9,6 @@ const classModel    = require(constants.path.app + 'module/model/classModel');
 const underscore    = require('underscore');
 
 exports.addVisitor = function (req, res, next) {
-    console.log('addVisitor');
     try {
         const classModelObj = new classModel();
         classModelObj.addVisitor(req.body, function (error, results){
@@ -17,10 +16,10 @@ exports.addVisitor = function (req, res, next) {
     		if (error) {
                 console.log("ERROR OCUURED", error);
             }
-            console.log(result);
+            console.log(results);
             result.visitorId = results.id; 
             if(results.access == false){
-                return res.status(200).json(response.build('FAILURE','You can not enter the class'));
+                return res.status(200).json(response.build('FAILURE',results));
             }
             return res.status(200).json(response.build('SUCCESS',result));
     	});
@@ -30,12 +29,9 @@ exports.addVisitor = function (req, res, next) {
 }
 
 exports.classAction = function (req, res, next) {
-    console.log('class action');
-    console.log(req.body);
     try {
         const classModelObj = new classModel();
         classModelObj.classAction(req.body, function (error, results){
-            console.log('res>>>>>',results);
             if(underscore.isEmpty(results) == true){
                 return res.status(200).json(response.build('FAILURE','You can not perform this action.'));
             }

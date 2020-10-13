@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
 		if (role == 2) {
 			socket.emit('login', {status: true, role:2, room:room});
 		} else {
-			axios.post('http://localhost:8095/addVisitor', {
+			axios.post('http://15.207.222.108:8095/addVisitor', {
 					"name" : name,
 					"role" : role,
 					"class" : room
@@ -52,7 +52,7 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('startclass', ({id, name, role, room}) => {
-		axios.post('http://localhost:8095/classAction', {
+		axios.post('http://15.207.222.108:8095/classAction', {
 			"isStart" : 1,
 			"classTeacher" : name,
 			"classTeacherId" : id,
@@ -68,14 +68,13 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('endclass', ({id, name, role, room}) => {
-		axios.post('http://localhost:8095/classAction', {
+		axios.post('http://15.207.222.108:8095/classAction', {
 			"isStart" : 0,
 			"classTeacher" : name,
 			"classTeacherId" : id,
 			"classRoom" : room
 		}).then(res => {
 			if(res) {
-				console.log('afted rows');
 				io.sockets.in(room).emit('message', 'Class Ended');
 				io.sockets.in(room).emit('class', {"start":false});
 			}
@@ -85,7 +84,7 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('leaveclass', ({id, name, role, room}) => {
-		axios.get('http://localhost:8095/leaveClass/'+id).then(res => {
+		axios.get('http://15.207.222.108:8095/leaveClass/'+id).then(res => {
 			if(res.data.status ==  true) {
 				if( role ==1) {
 					delete studentList[id];
@@ -103,7 +102,7 @@ io.on('connection', (socket) => {
 	})
 
 	socket.on('getlogs', ({room}) => {
-		axios.get('http://localhost:8095/showClassHistory/'+room).then(res => {
+		axios.get('http://15.207.222.108:8095/showClassHistory/'+room).then(res => {
 			if(res.data.status ==  true) {
 				socket.emit('history', res.data.response);
 			}

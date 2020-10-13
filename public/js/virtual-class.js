@@ -50,11 +50,17 @@ setTimeout(function(){
 
     socket.on('class',(res) => {
         if (res.start == true){
-            document.querySelector('#startClass button').disabled = true
-            document.querySelector('#endClass button').disabled = false
+            if(role == 0){
+                document.querySelector('#startClass button').disabled = true
+                document.querySelector('#endClass button').disabled = false
+            }
         } else if(res.start == false) {
-            document.querySelector('#startClass button').disabled = false
-            document.querySelector('#endClass button').disabled = true
+            if(role == 1){
+                document.querySelector('.main-content').innerHTML = "Class ended successfully";
+            } else {
+                document.querySelector('#startClass button').disabled = false
+                document.querySelector('#endClass button').disabled = true
+            }
         }
     })
 
@@ -66,5 +72,6 @@ setTimeout(function(){
 
     socket.on('leave', (res) => { 
         document.querySelector('.main-content').innerHTML = 'SUCCESSFULLY LEFT CLASS';
-    })    
+    })
+    
 }, 10);
