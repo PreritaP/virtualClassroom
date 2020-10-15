@@ -75,6 +75,10 @@ io.on('connection', (socket) => {
 			"classRoom" : room
 		}).then(res => {
 			if(res) {
+				studentList = {} ;
+				teacherlist = {} ;
+				io.in(room).emit('studentlist', `${JSON.stringify(studentList)}`);
+				//io.in(room).emit('teacherlist', `${JSON.stringify(teacherlist)}`);
 				io.sockets.in(room).emit('message', 'Class Ended');
 				io.sockets.in(room).emit('class', {"start":false});
 			}
